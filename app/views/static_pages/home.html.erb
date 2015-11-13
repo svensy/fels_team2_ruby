@@ -1,14 +1,9 @@
-<div class="center jumbotron">
-  <h1>Welcome to the Sample App</h1>
-
-  <h2>
-    This is the home page for the
-    <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
-
-  <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
+<div class="row">
+  <aside class="col-md-4">
+    <%= render 'shared/user_profile' if current_user != nil %>
+  </aside>
+  <div class="col-md-8">
+    <button> <%= link_to "WORDS", controller: "words", action: "index" %> </button>
+    <button> LESSONS </button>
+  </div>
 </div>
-
-<%= link_to image_tag("rails.png", alt: "Rails logo"),
-            'http://rubyonrails.org/' %>
