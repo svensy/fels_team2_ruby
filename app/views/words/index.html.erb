@@ -1,0 +1,30 @@
+<div class="row">
+  <aside class="col-md-3">
+    <%= render 'shared/user_profile' if current_user != nil %>
+  </aside>
+  <div class="col-md-9">
+    
+      
+      <div class="filter-pdf">
+      
+      <%= form_tag('/words', method: 'get') do %>
+        <div>
+            <span> Category: <%= select_tag 'Category', options_for_select([['Basic 500 words', '1'], ['Advance 500 words', '2']]), class: 'category-select-box' %> </span>
+            <% ['learned', 'not learned', 'all'].each do |learn| %>
+              <%= radio_button_tag 'learn', learn %>
+              <%= learn %>
+            <% end %>
+         </div>
+      
+         <div class="filter-pdf">
+          <%= submit_tag "Filter", class: "btn btn-info" %>
+          <%= submit_tag "PDF", class: "btn btn-info" %>
+        </div>
+      <% end %>
+      </div>
+      <% @words.each do |word| %>
+        <p> <%= word.content %>    <%= word.meaning%></p>
+      <% end %>
+  
+  </div>
+</div>
