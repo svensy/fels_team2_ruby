@@ -11,11 +11,11 @@ class UserDashboard < Administrate::BaseDashboard
     id: Field::Number,
     name: Field::String,
     email: Field::String,
-    relationships_id: Field::Number,
+    password: Field::String,
+    password_confirmation: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    password_digest: Field::String,
-    remember_digest: Field::String,
+
   }
 
   # COLLECTION_ATTRIBUTES
@@ -27,7 +27,8 @@ class UserDashboard < Administrate::BaseDashboard
     :id,
     :name,
     :email,
-    :relationships_id,
+    :password,
+    :password_confirmation,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -40,9 +41,9 @@ class UserDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :name,
     :email,
-    :relationships_id,
-    :password_digest,
-    :remember_digest,
+    :password,
+    :password_confirmation,
+
   ]
 
   # Overwrite this method to customize how users are displayed

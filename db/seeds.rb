@@ -7,8 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 
-Word.create(content: 'cow', meaning: 'bo', learned: true)
-Word.create(content: 'turkey', meaning: 'ga tay', learned: true)
-Word.create(content: 'chicken', meaning: 'ga', learned: false)
+

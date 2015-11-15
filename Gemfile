@@ -35,8 +35,7 @@ gem "administrate"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'activeadmin', github: 'gregbell/active_admin'
-gem 'devise'
+
 
 
 group :development, :test do
