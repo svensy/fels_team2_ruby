@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   get 'sessions/new'
 
   root             'static_pages#home'
@@ -12,4 +14,14 @@ Rails.application.routes.draw do
 
   resources :users
   resources :words
+  resources :categories
+
+  namespace :admin do
+    DashboardManifest::DASHBOARDS.each do |dashboard_resource|
+      resources dashboard_resource
+    end
+
+    root controller: DashboardManifest::ROOT_DASHBOARD, action: :index
+  end
+
 end
