@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   get 'sessions/new'
 
   root             'static_pages#home'
@@ -12,4 +14,8 @@ Rails.application.routes.draw do
 
   resources :users
   resources :words
+  resources :categories
+
+
+
 end
