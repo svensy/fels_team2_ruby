@@ -11,8 +11,6 @@ class WordDashboard < Administrate::BaseDashboard
     category: Field::BelongsTo,
     id: Field::Number,
     content: Field::String,
-    meaning: Field::String,
-    learned: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }
@@ -26,7 +24,6 @@ class WordDashboard < Administrate::BaseDashboard
     :category,
     :id,
     :content,
-    :meaning,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -39,8 +36,6 @@ class WordDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :category,
     :content,
-    :meaning,
-    :learned,
   ]
 
   # Overwrite this method to customize how words are displayed
