@@ -3,7 +3,7 @@ class CreateWordAnswers < ActiveRecord::Migration
     create_table :word_answers do |t|
       t.string :content
       t.boolean :correct
-      t.references :Word, index: true, foreign_key: true
+      t.references :word, index: true, foreign_key: true
 
       t.timestamps null: false
     end

@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
             flash.now[:danger] = 'Invalid email/password combination'
             render 'new'
           end
-          format.json {render json: user.errors.full_messages, status: 401}
+          format.json {render json: {message: "not found user"}, status: 401}
         end
       end
   end
