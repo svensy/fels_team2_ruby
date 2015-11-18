@@ -7,8 +7,23 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+User.create!(name:  "Example User",
+             email: "example@railstutorial.org",
+             password:              "123456",
+             password_confirmation: "123456")
 
-Word.create(content: 'cow', meaning: 'bo', learned: true)
-Word.create(content: 'turkey', meaning: 'ga tay', learned: true)
-Word.create(content: 'chicken', meaning: 'ga', learned: false)
+33.times do |n|
+  name  = Faker::Name.name
+  email = "example-#{n+1}@railstutorial.org"
+  password = "password"
+  User.create!(name:  name,
+               email: email,
+               password:              password,
+               password_confirmation: password)
+end
+Category.create(name: 'pickla')
+Category.create(name: 'okla')
+Category.create(name: 'memidla')
+Category.create(name: 'feedla')
+Category.create(name: 'lala')
+Category.create(name: 'ohnola')
