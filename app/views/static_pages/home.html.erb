@@ -4,6 +4,6 @@
   </aside>
   <div class="col-md-8">
     <%= link_to "Words", words_path, class: "action-button shadow animate blue"  %>
-    <%= link_to "Lessons", user_lessons_path(current_user) , class: "action-button shadow animate blue"  %>  
+    <%= link_to "Lessons", user_lessons_path(current_user) , class: "action-button shadow animate blue" if current_user != nil %>  
   </div>
 </div>
