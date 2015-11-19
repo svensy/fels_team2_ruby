@@ -13,13 +13,14 @@
       <div class= "row">
         <div class="col-md-6">
             <div class="category-name"> <%= category.name %> </div> 
-            <div class="category-words-container"> 
+            <div class="category-words-container word" > 
               <% category.words.all.each do |word| %>
-                <span class="category-word"> <%= word.content  %> </span>
+                <span > <%= word.content  %> </span>
 
               <% end %> 
             </div>
-            <%= link_to "Create Lesson", user_lessons_path(current_user, :category_id => category.id),method: :post, class: "btn" %>
+            <%= link_to "Create Lesson", user_lessons_path(current_user, :category_id => category.id), method: :post, 
+            class: "btn" if current_user != nil %>
         </div>
 
 

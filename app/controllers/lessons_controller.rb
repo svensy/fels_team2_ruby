@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
   def index
-    @lessons = Lesson.all
+    @lessons = Lesson.where(user_id: params[:user_id])
   end
 
   def show
@@ -14,7 +14,7 @@ class LessonsController < ApplicationController
   def create
     
     @lesson = Lesson.new(lesson_params)
-    @lesson.words = @lesson.category.words.sample(20) 
+    @lesson.words = @lesson.category.words.sample(5) 
 
     respond_to do |format|
         @lesson.save
@@ -25,7 +25,6 @@ class LessonsController < ApplicationController
         format.json{render json: @lesson.to_json, status: :ok}
 
     end
-    debugger
   end
   
   private

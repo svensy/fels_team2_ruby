@@ -303,13 +303,10 @@ input {
 .card{
   
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
-  padding: 20px;
+  padding: 15px;
+  margin-bottom: 1em;
 }
 
-.category-word {
-   
-  margin-right: 8px;
-}
 
 .category-name {
   font-size: 24px;
@@ -320,6 +317,11 @@ input {
 
   padding: 10px;
 
+}
+
+.word {
+  font-size: 16px;
+  font-weight: 300;
 }
 
 

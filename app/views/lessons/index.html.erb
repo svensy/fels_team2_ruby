@@ -4,10 +4,12 @@
   </aside>
   <div class="col-md-9">
     <div class="list-group">
+      <% i = 0 %>
       <% @lessons.each do |lesson| %>
         <li class="list-group-item"> 
+          <% i += 1%>
           <%= link_to user_lesson_path(lesson.user_id, lesson.id) do %>
-            <p>Lesson <%= lesson.id %> </p>
+            <p>Lesson <%= i %> </p>
           <% end %>
         </li>
       <% end %>
