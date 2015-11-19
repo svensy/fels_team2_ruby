@@ -21,7 +21,7 @@ class LessonsController < ApplicationController
 
   def create
     @lesson = Lesson.new(lesson_params)
-    @lesson.words = @lesson.category.words.sample(5) 
+    @lesson.words = @lesson.category.words.where(params[:learn] == 'not learned').sample(5) 
 
     respond_to do |format|
         @lesson.save

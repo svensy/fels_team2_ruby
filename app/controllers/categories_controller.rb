@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
 		format.html { render "index"}
 		format.json { render json: @categories.to_json, status: :ok}
     end
+
   end
 
 end

@@ -5,13 +5,17 @@ class UsersController < ApplicationController
 
   def index
     @users = User.paginate(page: params[:page])
+    respond_to do |format|
+      format.html {render 'index'}
+      format.json {render json: @users.to_json, status: :ok}
+    end
   end
 
   def show
     @user = User.find(params[:id])
     respond_to do |format|
       format.html {render 'show'}
-      format.json{render json: @user.to_json, status: :ok}
+      format.json {render json: @user.to_json, status: :ok}
     end
   end
 
@@ -26,7 +30,7 @@ class UsersController < ApplicationController
       if @user.save
         format.html do
           log_in @user
-          flash[:success] = "Welcome to the Sample App!"
+          flash[:success] = "Welcome to the LearnJapanese2 App!"
           redirect_to @user
         end
         format.json{render json: @user.to_json, status: :ok}

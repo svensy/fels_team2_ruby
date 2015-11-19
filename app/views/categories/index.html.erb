@@ -19,7 +19,7 @@
 
               <% end %> 
             </div>
-            <%= link_to "Create Lesson", user_lessons_path(current_user, :category_id => category.id), method: :post, 
+            <%= link_to "Create Lesson", user_lessons_path(current_user, :lesson => {:category_id => category.id, :user_id => current_user.id}), method: :post, 
             class: "btn" if current_user != nil %>
         </div>
 
