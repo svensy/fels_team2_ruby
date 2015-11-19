@@ -19,6 +19,12 @@
 
               <% end %> 
             </div>
+            <%= link_to "Create Lesson", user_lessons_path(current_user, :category_id => category.id),method: :post, class: "btn" %>
+        </div>
+
+
+        <div class="col-md-6">
+          
         </div>
 
       </div>

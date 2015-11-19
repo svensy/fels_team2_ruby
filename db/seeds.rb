@@ -12,7 +12,7 @@ User.create!(name:  "Example User",
              password:              "123456",
              password_confirmation: "123456")
 
-33.times do |n|
+5.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
@@ -21,9 +21,28 @@ User.create!(name:  "Example User",
                password:              password,
                password_confirmation: password)
 end
-Category.create(name: 'pickla')
-Category.create(name: 'okla')
-Category.create(name: 'memidla')
-Category.create(name: 'feedla')
-Category.create(name: 'lala')
-Category.create(name: 'ohnola')
+
+category1 = Category.create(name: 'Basic 500 words')
+category2 = Category.create(name: 'Nature')
+category3 = Category.create(name: 'Animal')
+category4 = Category.create(name: 'Date')
+
+30.times {
+  word_content = Faker::Lorem.word
+  category1.words.create!(content: word_content)
+}
+
+30.times {
+  word_content = Faker::Lorem.word 
+  category2.words.create!(content: word_content)
+}
+
+30.times {
+  word_content = Faker::Lorem.word 
+  category3.words.create!(content: word_content)
+}
+
+30.times {
+  word_content = Faker::Lorem.word 
+  category4.words.create!(content: word_content)
+}
