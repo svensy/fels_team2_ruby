@@ -307,9 +307,22 @@ input {
 }
 
 .category-word {
-  text-decoration: underline; 
+   
   margin-right: 8px;
 }
+
+.category-name {
+  font-size: 24px;
+  color: green;
+}
+
+.category-words-container {
+
+  padding: 10px;
+
+}
+
+
 
 /* Users index */
 
