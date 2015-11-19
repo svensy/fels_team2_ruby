@@ -1,10 +1,18 @@
 class LessonsController < ApplicationController
   def index
     @lessons = Lesson.where(user_id: params[:user_id])
+    respond_to do |format|
+        format.html {render "index"}
+        format.json {render json: @lessons.to_json, status: :ok}
+    end
   end
 
   def show
     @lesson = Lesson.find(params[:id])
+    respond_to do |format|
+      format.html {render "show"}
+      format.json {render json: @lesson.to_json, status: :ok}
+    end
   end
 
   def new
@@ -12,7 +20,7 @@ class LessonsController < ApplicationController
   end
 
   def create
-    
+    byebug
     @lesson = Lesson.new(lesson_params)
     @lesson.words = @lesson.category.words.sample(5) 
 
@@ -23,12 +31,11 @@ class LessonsController < ApplicationController
           redirect_to user_lesson_url(params[:user_id], @lesson)
         end
         format.json{render json: @lesson.to_json, status: :ok}
-
     end
   end
   
   private
   def lesson_params
-    params.permit(:category_id, :user_id)
+    params.require(:lesson).permit(:category_id, :user_id)
   end
 end
