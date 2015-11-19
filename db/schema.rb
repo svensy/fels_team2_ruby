@@ -26,15 +26,12 @@ ActiveRecord::Schema.define(version: 20151110112356) do
   end
 
   create_table "lesson_words", force: :cascade do |t|
-    t.integer  "lesson_id"
-    t.integer  "word_id"
-    t.integer  "word_answer_id"
+    t.string   "lesson_id"
+    t.string   "word_id"
+    t.string   "word_answer_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
-
-  add_index "lesson_words", ["lesson_id"], name: "index_lesson_words_on_lesson_id"
-  add_index "lesson_words", ["word_answer_id"], name: "index_lesson_words_on_word_answer_id"
 
   create_table "lessons", force: :cascade do |t|
     t.integer  "result"
@@ -47,37 +44,24 @@ ActiveRecord::Schema.define(version: 20151110112356) do
   add_index "lessons", ["category_id"], name: "index_lessons_on_category_id"
   add_index "lessons", ["user_id"], name: "index_lessons_on_user_id"
 
-  create_table "relationships", force: :cascade do |t|
-    t.string   "following_id"
-    t.string   "followed_id"
-    t.integer  "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "relationships", ["user_id"], name: "index_relationships_on_user_id"
-
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.integer  "relationships_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "password_digest"
     t.string   "remember_digest"
   end
 
-  add_index "users", ["relationships_id"], name: "index_users_on_relationships_id"
-
   create_table "word_answers", force: :cascade do |t|
     t.string   "content"
     t.boolean  "correct"
-    t.integer  "Word_id"
+    t.integer  "word_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "word_answers", ["Word_id"], name: "index_word_answers_on_Word_id"
+  add_index "word_answers", ["word_id"], name: "index_word_answers_on_word_id"
 
   create_table "words", force: :cascade do |t|
     t.string   "content"

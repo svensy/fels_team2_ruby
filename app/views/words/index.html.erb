@@ -9,7 +9,7 @@
       
       <%= form_tag('/words', method: 'get') do %>
         <div>
-            <span> Category: <%= select_tag 'Category', options_for_select([['Basic 500 words', '1'], ['Advance 500 words', '2']]), class: 'category-select-box' %> </span>
+            <span> Category: <%= select_tag 'category', options_for_select(@categories.collect {|c| [c.name, c.id]}), class: 'category-select-box' %> </span>
             <% ['learned', 'not learned', 'all'].each do |option| %>
               <%= radio_button_tag 'learn', option %>
               <%= option %>
@@ -22,9 +22,15 @@
         </div>
       <% end %>
       </div>
+  
+      <br>
+      <br> 
+      <div class="card word">   
       <% @words.each do |word| %>
-        <p> <%= word.content %></p>
+        <span> <%= word.content %> </span>
       <% end %>
+      </div>
   
   </div>
 </div>
+

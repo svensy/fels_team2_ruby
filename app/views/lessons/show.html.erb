@@ -1,0 +1,16 @@
+
+<div class="row">
+  <aside class="col-md-3">
+    <%= render 'shared/user_profile' if current_user != nil %>
+  </aside>
+
+
+  <div class="col-md-9">
+    <div class="card word">
+    <% @lesson.words.each do |word| %>
+      <%= word.content %>
+    <% end %> 
+    </div>
+  </div>
+
+</div>
