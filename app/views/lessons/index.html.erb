@@ -1,0 +1,16 @@
+<div class="row">
+  <aside class="col-md-3">
+    <%= render 'shared/user_profile' if current_user != nil %>
+  </aside>
+  <div class="col-md-9">
+    <div class="list-group">
+      <% @lessons.each do |lesson| %>
+        <li class="list-group-item"> 
+          <%= link_to user_lesson_path(lesson.user_id, lesson.id) do %>
+            <p>Lesson <%= lesson.id %> </p>
+          <% end %>
+        </li>
+      <% end %>
+    </div>
+  </div> 
+</div>
