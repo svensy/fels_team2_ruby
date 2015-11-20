@@ -9,6 +9,7 @@ class LessonsController < ApplicationController
 
   def show
     @lesson = Lesson.find(params[:id])
+
     respond_to do |format|
       format.html {render "show"}
       format.json {render json: @lesson.to_json(:include => {:words => {:include => :word_answers}}), status: :ok}
@@ -18,7 +19,7 @@ class LessonsController < ApplicationController
   def update
     @lesson = Lesson.find(params[:id])
     @lesson.update_attributes(lesson_params)
-    debugger
+
     render "edit"
   end
 
