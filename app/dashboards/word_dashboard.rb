@@ -9,6 +9,9 @@ class WordDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     category: Field::BelongsTo,
+    lesson_words: Field::HasMany,
+    lessons: Field::HasMany,
+    word_answers: Field::HasMany,
     id: Field::Number,
     content: Field::String,
     created_at: Field::DateTime,
@@ -22,8 +25,9 @@ class WordDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :category,
-    :id,
-    :content,
+    :lesson_words,
+    :lessons,
+    :word_answers,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -35,6 +39,9 @@ class WordDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :category,
+    :lesson_words,
+    :lessons,
+    :word_answers,
     :content,
   ]
 
