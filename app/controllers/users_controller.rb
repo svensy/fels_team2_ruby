@@ -46,14 +46,19 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-      # Handle a successful update.
-      flash[:success] = "Profile updated"
-      redirect_to @user
-    else
-      render 'edit'
-    end
+      @user = User.find(params[:id])
+      respond_to do |format|
+          if @user.update_attributes(user_params)
+            format.html do
+              flash[:success] = "Profile updated"
+              redirect_to @user
+            end
+            format.json{render json: @user.to_json, status: :ok}
+          else
+            format.html{render 'edit'}
+            format.json{render json: @user.errors.full_messages, status: 401}
+          end
+      end
   end
 
   private
