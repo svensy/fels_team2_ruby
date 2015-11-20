@@ -1,1 +1,6 @@
 <p> Hello </p>
+
+<% @lesson.lesson_words.each do |lw| %>
+  <%= lw.word_answer.correct %>
+  
+<% end %>

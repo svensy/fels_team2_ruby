@@ -9,15 +9,16 @@ class LessonsController < ApplicationController
 
   def show
     @lesson = Lesson.find(params[:id])
+
     respond_to do |format|
       format.html {render "show"}
-      format.json {render json: @lesson.to_json, status: :ok}
+      format.json {render json: @lesson.to_json(:include => {:words => {:include => :word_answers}}), status: :ok}
     end
   end
 
   def update
-
-    
+    @lesson = Lesson.find(params[:id])
+    @lesson.update_attributes(lesson_params)
     render "edit"
   end
 
@@ -28,7 +29,7 @@ class LessonsController < ApplicationController
   def create
     @lesson = Lesson.new(lesson_params)
     @lesson.words = @lesson.category.words.sample(5) 
-    debugger
+
     respond_to do |format|
         @lesson.save
         format.html do
@@ -38,7 +39,7 @@ class LessonsController < ApplicationController
         format.json{render json: @lesson.to_json, status: :ok}
     end
   end
-  
+    
   private
   def lesson_params
     params.require(:lesson).permit(:category_id, :user_id, lesson_words_attributes: [:id, :word_answer_id])
