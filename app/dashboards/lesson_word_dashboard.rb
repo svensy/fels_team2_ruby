@@ -9,9 +9,9 @@ class LessonWordDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     lesson: Field::BelongsTo,
-    word_answer: Field::BelongsTo,
+    word: Field::BelongsTo,
     id: Field::Number,
-    word_id: Field::Number,
+    word_answer_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }
@@ -23,9 +23,9 @@ class LessonWordDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :lesson,
-    :word_answer,
+    :word,
     :id,
-    :word_id,
+    :word_answer_id,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -37,8 +37,8 @@ class LessonWordDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :lesson,
-    :word_answer,
-    :word_id,
+    :word,
+    :word_answer_id,
   ]
 
   # Overwrite this method to customize how lesson words are displayed

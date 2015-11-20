@@ -8,14 +8,14 @@ class UserDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    lessons: Field::HasMany,
     id: Field::Number,
     name: Field::String,
     email: Field::String,
-    password: Field::String,
-    password_confirmation: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-
+    password_digest: Field::String,
+    remember_digest: Field::String,
   }
 
   # COLLECTION_ATTRIBUTES
@@ -24,11 +24,10 @@ class UserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :lessons,
     :id,
     :name,
     :email,
-    :password,
-    :password_confirmation,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -39,11 +38,11 @@ class UserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
+    :lessons,
     :name,
     :email,
-    :password,
-    :password_confirmation,
-
+    :password_digest,
+    :remember_digest,
   ]
 
   # Overwrite this method to customize how users are displayed

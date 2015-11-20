@@ -15,14 +15,20 @@ class LessonsController < ApplicationController
     end
   end
 
+  def update
+
+    
+    render "edit"
+  end
+
   def new
     @lesson = Lesson.new
   end
 
   def create
     @lesson = Lesson.new(lesson_params)
-    @lesson.words = @lesson.category.words.where(params[:learn] == 'not learned').sample(5) 
-
+    @lesson.words = @lesson.category.words.sample(5) 
+    debugger
     respond_to do |format|
         @lesson.save
         format.html do
@@ -35,6 +41,6 @@ class LessonsController < ApplicationController
   
   private
   def lesson_params
-    params.require(:lesson).permit(:category_id, :user_id)
+    params.require(:lesson).permit(:category_id, :user_id, lesson_words_attributes: [:id, :word_answer_id])
   end
 end

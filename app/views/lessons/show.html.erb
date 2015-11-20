@@ -5,10 +5,34 @@
   </aside>
 
 
-  <div class="col-md-9">
+  <div class="col-md-7">
     <div class="card word">
-    <% @lesson.words.each do |word| %>
-      <p> <%= word.content %> </p>
+    <%= form_for [current_user, @lesson] do |f| %>
+      <%= f.fields_for :lesson_words do |lw_builder| %>
+        <div>
+        
+        <% word = lw_builder.object.word %>
+        
+      <div class="row">
+
+        <div class="col-md-6">
+          <div style="font-size: 24px; color: green; "> <%= word.content %> </div>
+        </div>
+
+        <div class="col-md-6">
+          <% word.word_answers.each do |answer| %>
+
+                <%= lw_builder.radio_button :word_answer_id, answer.id %>
+                <%= lw_builder.label :word_answer_id, answer.content %>
+
+          <% end %>
+        </div>
+      </div>
+        
+        </div>
+      <% end %>
+
+      <%= f.submit "Submit", class: "btn btn-info" %>
     <% end %> 
     </div>
   </div>
