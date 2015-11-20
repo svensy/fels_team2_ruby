@@ -7,7 +7,7 @@ class WordsController < ApplicationController
     params[:category] = 1 if !params[:category]
     @words_category = Word.where(category_id: params[:category]) if params[:category]
     
-    lessons_user = current_user.lessons
+    lessons_user = User.find_by(id: params[:user_id]) .lessons
     @words_user =  []
    	lessons_user.each do |lesson|
    		lesson.words.each do |word|

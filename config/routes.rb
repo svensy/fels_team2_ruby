@@ -13,12 +13,11 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
 
   resources :users do
+    resources :words
     resources :lessons
   end
-  resources :words
-  resources :categories
   
-
+  resources :categories
   
   namespace :admin do
     DashboardManifest::DASHBOARDS.each do |dashboard_resource|
