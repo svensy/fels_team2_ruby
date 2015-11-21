@@ -1,6 +1,27 @@
-<p> Hello </p>
-
-<% @lesson.lesson_words.each do |lw| %>
-  <%= lw.word_answer.correct %>
+<div class="row">
+  <aside class="col-md-3">
+    <%= render 'shared/user_profile' if current_user != nil %>
+  </aside>
   
-<% end %>
+   <div class="col-md-7">
+    <h2> Your Result: <%= @lesson.result %> </h2>
+      <div class="card word" style="background-color: #36D7B7;">   
+
+        <div class="row list-group" style="margin: 10px;">
+        <% @lesson.lesson_words.each do |lw| %>
+
+          <div class="col-md-5 list-group-item" >
+            <%= lw.word.content %>
+          </div>
+          <div class="col-md-5 list-group-item" >
+            <%= lw.word_answer.content %>
+          </div>
+          <div class="col-md-2 list-group-item" >
+            <%= lw.word_answer.correct %>
+          </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+
+</div>

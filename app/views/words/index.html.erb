@@ -25,10 +25,23 @@
   
       <br>
       <br> 
-      <div class="card word">   
-      <% @words.each do |word| %>
-        <p> <%= word.content %> </p>
-      <% end %>
+      <div class="card word" style="background-color: #36D7B7;">   
+        <div class="row list-group" style="margin: 10px;">
+          <% @words.each do |word| %>
+            <div class="col-md-6 list-group-item">
+              <div class="row">
+                <div class="col-md-6">
+                   <%= word.content %> 
+                </div>
+                <div class="col-md-6">
+                   <% word.word_answers.each do |ws| %>
+                       <%= ws.content if ws.correct == true %> 
+                   <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
   
   </div>

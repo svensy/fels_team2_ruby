@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
           format.html do
             log_in user
             params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-            redirect_to user
+            redirect_to root_url
           end
           format.json {render json: user.to_json, status: :ok}
         else
