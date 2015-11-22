@@ -12,20 +12,22 @@ class WordsController < ApplicationController
 
       @words_not_learned = []
       @words.each do |word|
+        word_in_lessons = false
         @lessons.each do |lesson|
-          word_in_lessons = false
           lesson.lesson_words.each do |lesson_word|
-            word_in_lessons = true if word == lesson_word
+            word_in_lessons = true if word == lesson_word.word
           end
-          @words_not_learned << word if !word_in_lessons
         end
+        @words_not_learned << word if (!@words_not_learned.include?(word) && !word_in_lessons )
       end
       @lessons.each do |lesson|
         lesson.lesson_words.each do |lesson_word| 
           word = lesson_word.word
-          @words_not_learned << word if (!@words_not_learned.include?(word) || lesson_word.word_answer.nil? || !lesson_word.word_answer.correct)
+          @words_not_learned << word if (!@words_not_learned.include?(word) && (lesson_word.word_answer.nil? || lesson_word.word_answer.correct == false))
         end
       end  
+
+
 
       @words_learned = []
       @words.each do |word|
@@ -35,11 +37,11 @@ class WordsController < ApplicationController
         end
         @words_learned << word if learned
       end
-      
+       
 
       @words = @words_learned if params[:learn] == 'learned'
-      @words = @words_not_learned if params[:learn] == 'not learned'
-     
+      @words = @words_not_learned if params[:learn] == 'not_learned'
+      
     end
 
      

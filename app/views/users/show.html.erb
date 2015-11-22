@@ -9,8 +9,8 @@
         <li class="list-group-item"> 
           <% i += 1%>
           <%= link_to user_lesson_path(lesson.user_id, lesson.id) do %>
-            <div>Lesson <%= i %> </div>
-            <div style="float: right;"> Your last result: <%= lesson.result %></div>
+            <div>Lesson <%= i %> (Category: <%= lesson.category.name %>)  </div>
+            <div style="float: right; color: green;"> Your last result: <%= lesson.result %></div>
             <div style="clear: both;"> </div>
           <% end %>
         </li>

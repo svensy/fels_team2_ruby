@@ -1,15 +1,13 @@
 <div class="row">
-  <aside class="col-md-3">
-    <%= render 'shared/user_profile' if current_user != nil %>
-  </aside>
-  <div class="col-md-9">
+
+  <div class="col-md-9 col-md-offset-2">
     <div class="list-group">
       <% i = 0 %>
       <% @lessons.each do |lesson| %>
         <li class="list-group-item"> 
           <% i += 1%>
           <%= link_to user_lesson_path(lesson.user_id, lesson.id) do %>
-            <p>Lesson <%= i %> </p>
+            <p>Lesson <%= i %> (Category: <%= lesson.category.name %>) </p>
           <% end %>
         </li>
       <% end %>

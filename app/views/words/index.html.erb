@@ -1,16 +1,13 @@
+
 <div class="row">
-  <aside class="col-md-3">
-    <%= render 'shared/user_profile' if current_user != nil %>
-  </aside>
-  <div class="col-md-9">
-    
-      
+
+  <div class="col-md-9 col-md-offset-2">   
       <div class="filter-pdf">
       
       <%= form_tag( user_words_path(current_user) , method: 'get') do %>
         <div>
             <span> Category: <%= select_tag 'category_id', options_for_select(@categories.collect {|c| [c.name, c.id]}), class: 'category-select-box' %> </span>
-            <% ['learned', 'not learned', 'all'].each do |option| %>
+            <% ['learned', 'not_learned', 'all'].each do |option| %>
               <%= radio_button_tag 'learn', option %>
               <%= option %>
             <% end %>
@@ -22,7 +19,6 @@
         </div>
       <% end %>
       </div>
-  
       <br>
       <br> 
       <div class="card word" style="background-color: #36D7B7;">   
@@ -46,4 +42,14 @@
   
   </div>
 </div>
+
+
+<%= content_tag "div", id: "data-category", data: {category: params[:category_id] } do %>
+<% end %>
+<%= content_tag "div", id: "data-learn", data: {learn: params[:learn] } do %>
+<% end %>
+
+<%= javascript_include_tag 'words/index' %> 
+
+
 

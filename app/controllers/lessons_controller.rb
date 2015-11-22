@@ -22,7 +22,7 @@ class LessonsController < ApplicationController
 
     result = 0
     @lesson.lesson_words.each do |lw|
-      if lw.word_answer.correct == true
+      if !lw.word_answer.nil? && lw.word_answer.correct == true
         result = result + 1 
 
       end
@@ -33,7 +33,8 @@ class LessonsController < ApplicationController
 
     respond_to do |format|
       format.html { render "edit"}
-      format.json { render json: {message: "Successful"}}
+      format.json { render json: {message: "Successful",
+                                  result: result}}
     end
   end
 
@@ -48,7 +49,7 @@ class LessonsController < ApplicationController
     respond_to do |format|
         @lesson.save
         format.html do
-          flash[:success] = "Successful!"
+
           redirect_to user_lesson_url(params[:user_id], @lesson)
         end
         format.json{render json: @lesson.to_json(:include => {:words => {:include => :word_answers}}), status: :ok}

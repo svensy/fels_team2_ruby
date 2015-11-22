@@ -1,0 +1,13 @@
+
+	var category_id = $('#data-category').data('category')
+	var learn = $('#data-learn').data('learn')
+	category_id = parseInt(category_id, 10);
+	console.log(category_id + '  ' + learn);
+
+  $("#category_id").val(category_id);
+
+    var learn_elm = document.getElementById("learn_"+learn);
+    if(learn_elm){
+      learn_elm.checked = true;
+    }
+

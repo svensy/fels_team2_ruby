@@ -1,16 +1,11 @@
 
 <div class="row">
-  <aside class="col-md-3">
-    <%= render 'shared/user_profile' if current_user != nil %>
-  </aside>
-
-
-  <div class="col-md-7">
-    <div class="card word">
+  <div class="col-md-7 col-md-offset-3">
+    <div class="card word" style="  background-color: #36D7B7;">
     <%= form_for [current_user, @lesson] do |f| %>
       <%= f.fields_for :lesson_words do |lw_builder| %>
         <div >
-          <div class="row">
+          <div class="row answer-box">
             <% word = lw_builder.object.word %>
           
             <div class="col-md-5">
@@ -18,22 +13,26 @@
             </div>
 
             <div class="col-md-6">
-              <ul>
+              
                 <% word.word_answers.each do |answer| %>
-                <div style="display: inline-block;">
-                      <%= lw_builder.radio_button :word_answer_id, answer.id %>
-                      <%= lw_builder.label :word_answer_id, answer.content %>
-                </div>
+                  <div class="radio">
+                      <label> <%= lw_builder.radio_button :word_answer_id, answer.id %> <%= answer.content %> </label>
+                   
+                  </div>
                 <% end %>
-              </ul>
+           
             </div>
           </div>
         </div>
       <% end %>
-     <br>
-     <div>
-      <%= f.submit "Submit", class: "btn btn-info" %>
+      
+      <div style="clear: both;">
+        <div style="float: right;">
+        <%= f.submit "Submit", class: "btn btn-danger" %>
+        </div>
       </div>
+      <br>
+      <br>
     <% end %> 
     </div>
   </div>
