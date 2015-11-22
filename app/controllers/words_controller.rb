@@ -1,50 +1,42 @@
 class WordsController < ApplicationController
 
   def index 
-    @words = Word.all
-    
-    @categories = Category.all
-    params[:category] = 1 if !params[:category]
-    @words_category = Word.where(category_id: params[:category]) if params[:category]
-    
 
-   	if params[:learn] 
-      lessons_user = User.find_by(id: params[:user_id]) .lessons
-      @words_user =  []
-      lessons_user.each do |lesson|
-        lesson.words.each do |word|
-          @words_user << word
+    @categories = Category.all
+    params[:category_id] = 1 if !params[:category_id]
+    @words = Category.find(params[:category_id]).words
+
+
+    if params[:learn] 
+      @words = []
+      @lessons = Lesson.where("user_id = ? AND category_id = ?", params[:user_id], params[:category_id])
+      if params[:learn] == 'all'
+        @lessons.each do |lesson|
+          lesson.words.each do |lesson_word|
+            @words << lesson_word unless @words.include?(lesson_word)
+          end 
+        end
+      elsif params[:learn] == 'learned'
+        @lessons.each do |lesson|
+          lesson.lesson_words.each do |lesson_word| 
+            word = lesson_word.word
+            @words << word if (!@words.include?(word) && !lesson_word.word_answer.nil? )
+          end
+        end
+      elsif params[:learn] == 'not learned'
+        @lessons.each do |lesson|
+          lesson.lesson_words.each do |lesson_word| 
+            word = lesson_word.word
+            @words << word if (!@words.include?(word) &&  lesson_word.word_answer.nil? )
+          end
         end
       end
-   		@words = []
-   		if params[:learn] == 'learned'
-		   	@words_user.each do |wu|
-		   		@words_category.each do |wc|
-		   			@words << wu if wu == wc
-		   		end
-		   	end
-		  elsif params[:learn] == 'not learned'
-  			@words_category.each do |wc|
-  				learned = false
-  				@words_user.each do |wu| 
-  					if wu == wc 
-  						learned = true
-  						break
-  					end
-  				end
-  				@words << wc if !learned
-  			end
-      elsif params[:learn] == 'all'
-        @words = @words_category
-      end
-		else
-			@words = @words_category
-		end
+    end
 	
-	respond_to do |format|
-		format.html {render 'index'}
-		format.json {render json: @words.to_json, status: :ok}
-	end
+  	respond_to do |format|
+  		format.html {render 'index'}
+  		format.json {render json: @words.to_json, status: :ok}
+  	end
   end
 
 end

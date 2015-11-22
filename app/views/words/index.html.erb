@@ -9,7 +9,7 @@
       
       <%= form_tag( user_words_path(current_user) , method: 'get') do %>
         <div>
-            <span> Category: <%= select_tag 'category', options_for_select(@categories.collect {|c| [c.name, c.id]}), class: 'category-select-box' %> </span>
+            <span> Category: <%= select_tag 'category_id', options_for_select(@categories.collect {|c| [c.name, c.id]}), class: 'category-select-box' %> </span>
             <% ['learned', 'not learned', 'all'].each do |option| %>
               <%= radio_button_tag 'learn', option %>
               <%= option %>
