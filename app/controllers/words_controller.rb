@@ -20,14 +20,14 @@ class WordsController < ApplicationController
         @lessons.each do |lesson|
           lesson.lesson_words.each do |lesson_word| 
             word = lesson_word.word
-            @words << word if (!@words.include?(word) && (!lesson_word.word_answer.nil? && lesson_word.word_answer.correct ==true))
+            @words << word if (!@words.include?(word) && !lesson_word.word_answer.nil? )
           end
         end
       elsif params[:learn] == 'not learned'
         @lessons.each do |lesson|
           lesson.lesson_words.each do |lesson_word| 
             word = lesson_word.word
-            @words << word if (!@words.include?(word) && ( lesson_word.word_answer.nil? || lesson_word.word_answer.correct ==false))
+            @words << word if (!@words.include?(word) &&  lesson_word.word_answer.nil? )
           end
         end
       end

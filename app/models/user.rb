@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :lessons
+  has_many :lessons, dependent: :destroy
 
 
   attr_accessor :remember_token
