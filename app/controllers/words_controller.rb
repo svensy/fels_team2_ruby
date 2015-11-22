@@ -4,7 +4,7 @@ class WordsController < ApplicationController
 
     @categories = Category.all
     params[:category_id] = 1 if !params[:category_id]
-    @words = Category.find_by(params[:category_id]).words
+    @words = Category.find(params[:category_id]).words
 
 
     if params[:learn] 
