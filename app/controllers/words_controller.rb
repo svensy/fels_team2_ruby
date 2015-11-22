@@ -35,7 +35,7 @@ class WordsController < ApplicationController
         end
         @words_learned << word if learned
       end
-       debugger
+       
 
       @words = @words_learned if params[:learn] == 'learned'
       @words = @words_not_learned if params[:learn] == 'not learned'
