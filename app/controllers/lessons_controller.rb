@@ -20,17 +20,21 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
     @lesson.update_attributes(lesson_params)
 
-    result = 0;
+    result = 0
     @lesson.lesson_words.each do |lw|
       if lw.word_answer.correct == true
         result = result + 1 
 
       end
     end
+    
     @lesson.update_attribute(:result, result)
 
 
-    render "edit"
+    respond_to do |format|
+      format.html { render "edit"}
+      format.json { render json: {message: "Successful"}}
+    end
   end
 
   def new

@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       if @user.save
         format.html do
           log_in @user
-          flash[:success] = "Welcome to the LearnJapanese2 App!"
+          flash[:success] = "Welcome to the EE-Learning App!"
           redirect_to @user
         end
         format.json{render json: @user.to_json, status: :ok}
