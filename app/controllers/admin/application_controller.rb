@@ -19,7 +19,7 @@ class Admin::ApplicationController < Administrate::ApplicationController
   end
 
   def admin_list
-    list = ['ngotungson0602@gmail.com'] 
+    list = ['ngotungson0602@gmail.com', 'caominhson58@gmail.com'] 
   end
 
   # Override this value to specify the number of elements to display at a time
